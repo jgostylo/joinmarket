@@ -375,6 +375,9 @@ class NotifyRequestHeader(BaseHTTPServer.BaseHTTPRequestHandler):
 			common.core_alert = urllib.unquote(self.path[len(pages[1]):])
 			common.debug('Got an alert!\nMessage=' + common.core_alert)
 
+		else:
+			common.debug('ERROR: This is not a handled URL path.  You may want to check your notify URL for typos.')
+
 		os.system('curl -sI --connect-timeout 1 http://localhost:' +
 			str(self.base_server.server_address[1] + 1) + self.path)
 		self.send_response(200)
